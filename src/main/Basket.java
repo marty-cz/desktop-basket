@@ -24,6 +24,7 @@ public class Basket extends Application {
 
     Scene scene = new Scene(root);
     scene.getStylesheets().add("main/resources/style/styles.css");
+    stage.setTitle("Basket Application");
     stage.setScene(scene);
     stage.show();
   }
