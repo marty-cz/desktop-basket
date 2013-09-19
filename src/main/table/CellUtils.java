@@ -202,7 +202,11 @@ class CellUtils {
       @Override
       public void handle(KeyEvent t) {
         if (t.getCode() == KeyCode.ENTER) {
-          cell.commitEdit((T) new Double(spinner.getValue().doubleValue()));
+          try {
+            cell.commitEdit((T) new Double(spinner.getText()));
+          } catch (Exception e) {
+            cell.commitEdit((T) new Double(spinner.getValue().doubleValue()));
+          }
         } else if (t.getCode() == KeyCode.ESCAPE) {
           cell.cancelEdit();
         }
