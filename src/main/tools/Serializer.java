@@ -1,8 +1,9 @@
 package main.tools;
 
 import java.io.FileOutputStream;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.OutputStreamWriter;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 
 import javafx.collections.FXCollections;
@@ -55,7 +56,8 @@ public class Serializer {
     try {
       GsonBuilder gsonB = new GsonBuilder();
       gsonB.registerTypeAdapter(ObservableList.class, new ObservableListInstanceCreator());
-      reader = new JsonReader(new FileReader(filePath));
+//      reader = new JsonReader(new FileReader(filePath));
+      reader = new JsonReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
       return gsonB.create().fromJson(reader, clazz);
     } catch (Exception e) {
       errString = e.getLocalizedMessage();
